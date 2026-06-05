@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Bir Sorum Var... ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(214, 51, 132, 0.2);
+            position: relative;
+        }
+
+        #header-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            transition: 0.5s transform;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            transition: 0.5s;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            transition: 0.3s all ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #evet {
+            background-color: #ff4d6d;
+            color: white;
+            font-weight: bold;
+        }
+
+        #hayir {
+            background-color: #6c757d;
+            color: white;
+            position: relative;
+        }
+
+        /* Başarı Ekranı */
+        #final {
+            display: none;
+            font-size: 1em;
+            color: #d63384;
+            animation: confeti 1s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes confeti {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <!-- İllüstrasyon Buraya -->
+        <img src="image_0.png" alt="Tatlı İllüstrasyon" id="header-img">
+        
+        <div id="ask-phase">
+            <h1 id="mesaj">Sana çok özel bir sorum var... ❤️<br>Benimle çıkar mısın?🌸</h1>
+            <div class="buttons">
+                <button id="evet" onclick="evetBasildi()">Evet!</button>
+                <button id="hayir" onmouseover="kacir()" onclick="kacir()">Hayır</button>
+            </div>
+        </div>
+
+        <!-- Başarı Ekranı -->
+        <div id="final">
+            <h1>Yaşasın! Bir sevgili kazandın 😍🎉<br>Beni dünyanın en mutlu insanı yaptın!</h1>
+            <p>Hazır mısın aşka? 💖 ✨</p>
+        </div>
+    </div>
+
+    <script>
+        let evetSayac = 0;
+        const mesajlar = [
+            "Emin misin? 😉",
+            "Daha fazla düşünmek ister misin? 🌸",
+            "Son kararın mı? ✨",
+            "Bir daha sormayacağım",
+            "Beni seviyor musun? ✨"
+        ];
+
+        function evetBasildi() {
+            if (evetSayac < mesajlar.length) {
+                // Mesajı değiştir
+                document.getElementById('mesaj').innerHTML = mesajlar[evetSayac];
+                
+                // Evet butonunu ve resmi büyüt (Tatlı ısrar)
+                document.getElementById('evet').style.transform = `scale(${1 + (evetSayac * 0.2)})`;
+                document.getElementById('header-img').style.transform = `scale(${1 + (evetSayac * 0.05)})`;
+                
+                // Hayır butonunu küçült
+                document.getElementById('hayir').style.transform = `scale(${1 - (evetSayac * 0.15)})`;
+                
+                evetSayac++;
+            } else {
+                // Son Aşamaya Geç (Final)
+                document.getElementById('ask-phase').style.display = 'none';
+                document.getElementById('final').style.display = 'block';
+                // Kalp atış animasyonu
+                document.getElementById('container').style.animation = 'pulse 1s infinite';
+            }
+        }
+
+        function kacir() {
+            // Hayır butonu yine kaçıyor ama artık daha hızlı ve küçük
+            var x = Math.random() * (window.innerWidth - 180);
+            var y = Math.random() * (window.innerHeight - 120);
+            document.getElementById('hayir').style.position = 'absolute';
+            document.getElementById('hayir').style.left = x + 'px';
+            document.getElementById('hayir').style.top = y + 'px';
+        }
+    </script>
+</body>
+</html>
